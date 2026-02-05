@@ -3,68 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ thống Báo cáo</title>
+    <title>Hệ thống Báo cáo - Đang chuyển hướng...</title>
+    
+    <!-- Phương pháp 1: Meta refresh - chuyển hướng sau 3 giây -->
+    <meta http-equiv="refresh" content="3;url=https://example.com/bao-cao">
+    
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-        }
-        h2 {
-            margin-bottom: 30px;
-            color: #333;
-        }
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 15px 0;
-            margin-bottom: 15px;
-            background-color: #007bff;
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 16px;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+            margin: 30px 0;
+        }
+        
+        p {
+            font-size: 1.2em;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease-in 0.3s both;
+        }
+        
+        .countdown {
+            font-size: 3em;
             font-weight: bold;
-            transition: background-color 0.3s;
+            margin: 20px 0;
+            animation: pulse 1s ease-in-out infinite;
         }
-        .btn:hover {
-            background-color: #0056b3;
+        
+        a {
+            color: white;
+            text-decoration: underline;
+            font-weight: bold;
         }
-        .btn-secondary {
-            background-color: #28a745; /* Màu xanh lá cho nút thứ 2 */
+        
+        a:hover {
+            opacity: 0.8;
         }
-        .btn-secondary:hover {
-            background-color: #218838;
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h2>Chọn hệ thống truy cập</h2>
-        
-        <a href="https://script.google.com/macros/s/AKfycbxHN7a_h5pl0qdRsqrGIDeUg5zq4HfFtnwRmc2uVDI0IGycB4aWzwToZNIdbjep7yHn/exec" class="btn">
-            Truy cập báo cáo
-        </a>
-
-        <a href="https://script.google.com/macros/s/AKfycbx31Hm76ssBxEMJZBHkvNX9EQMJsmr-Cmj68I7k25dop4kEKGKySL-rNo8ruHf4-wMQRg/exec" class="btn btn-secondary">
-            Tra cứu GMP - Cục Quản lý Dược
-        </a>
+        <h1>🔄 Hệ thống Báo cáo</h1>
+        <div class="loading"></div>
+        <p>Đang chuyển hướng trong</p>
+        <div class="countdown" id="countdown">3</div>
+        <p>Nếu trình duyệt không tự động chuyển hướng,<br>
+        vui lòng <a href="https://example.com/bao-cao" id="manualLink">nhấn vào đây</a></p>
     </div>
 
+    <script>
+        // Phương pháp 2: JavaScript redirect với countdown
+        const targetUrl = 'https://example.com/bao-cao'; // THAY ĐỔI LINK NÀY
+        let countdownValue = 3;
+        const countdownElement = document.getElementById('countdown');
+        const manualLink = document.getElementById('manualLink');
+        
+        // Cập nhật link thủ công
+        manualLink.href = targetUrl;
+        
+        // Countdown
+        const countdownInterval = setInterval(() => {
+            countdownValue--;
+            countdownElement.textContent = countdownValue;
+            
+            if (countdownValue <= 0) {
+                clearInterval(countdownInterval);
+                // Chuyển hướng
+                window.location.href = targetUrl;
+            }
+        }, 1000);
+        
+        // Phương pháp 3: Chuyển hướng ngay lập tức (bỏ comment nếu muốn dùng)
+        // window.location.replace(targetUrl);
+    </script>
 </body>
 </html>
